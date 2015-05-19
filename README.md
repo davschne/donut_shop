@@ -5,3 +5,5 @@ This webpage displays, in table form, the estimated number of donuts that will n
 -average number of donuts purchased per customer
 
 For each hour of the day, the algorithm selects, uniformly at random, the number of customers per hour within the specified range. This is multiplied by the average number purchased per customer.
+
+There is also a submission form for adding new store locations.

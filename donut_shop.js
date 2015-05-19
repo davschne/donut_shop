@@ -23,6 +23,8 @@
     return total;
   };
 
+
+
   var stores = [];
   stores.push(new Store("Downtown", 8, 43, 4.5));
   stores.push(new Store("Capitol Hill", 4, 37, 2));
@@ -37,9 +39,10 @@
     var name = event.target["name"].value,
         minCustPerHour = Number(event.target["min-cust"].value),
         maxCustPerHour = Number(event.target["max-cust"].value),
-        avgPerCust = Number(event.target["avg-per-cust"].value);
-    stores.push(new Store(name, minCustPerHour, maxCustPerHour, avgPerCust));
-    displayRows(stores, hours);
+        avgPerCust = Number(event.target["avg-per-cust"].value),
+        store = new Store(name, minCustPerHour, maxCustPerHour, avgPerCust);
+    stores.push(store);
+    store.writeToTable(hours);
   }
 
   function createTableHeaders(hours) {
@@ -54,19 +57,17 @@
     table.appendChild(row);
   }
 
-  function displayRows(stores, hours) {
-    var table = document.querySelector("tbody");
-    // helper function to display each row
-    var displayRow = function(store) {
-      var row = document.createElement("tr"),
+  Store.prototype.writeToTable = function(hours) {
+    var table = document.querySelector("tbody"),
+        row = document.createElement("tr"),
         nameCell = document.createElement("th"),
         totalCell = document.createElement("td"),
         totalDonuts = 0;
-      nameCell.textContent = store.name;
+      nameCell.textContent = this.name;
       row.appendChild(nameCell);
       for (var i = 0; i < hours.length; i++) {
         var cell = document.createElement("td"),
-            donuts = store.donutsPerHour();
+            donuts = this.donutsPerHour();
         cell.textContent = donuts;
         row.appendChild(cell);
         totalDonuts += donuts;
@@ -74,9 +75,11 @@
       totalCell.textContent = totalDonuts;
       row.appendChild(totalCell);
       table.appendChild(row);
-    };
+  }
+
+  function displayRows(stores, hours) {
     for (var i = 0; i < stores.length; i++) {
-      displayRow(stores[i]);
+      stores[i].writeToTable(hours);
     }
   }
 
