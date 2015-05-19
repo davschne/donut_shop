@@ -33,30 +33,38 @@
 
   var hours = ["7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"];
 
-  function createTableHeaders(headings) {
-    var table = document.querySelector("table"),
-        row = "<tr><th></th>";
+  function createTableHeaders(hours) {
+    var table = document.querySelector("thead"),
+        row = document.createElement("tr"),
+        headings = [""].concat(hours, "Total"); // column headings
     for (var i = 0; i < headings.length; i++) {
-      row += "<th>" + headings[i] + "</th>";
+      var cell = document.createElement("th");
+      cell.textContent = headings[i];
+      row.appendChild(cell);
     }
-    row += "<th>Total</th></tr>";
-    table.innerHTML += row;
+    table.appendChild(row);
   }
 
-  function displayRows(stores) {
+  function displayRows(stores, hours) {
+    var table = document.querySelector("tbody");
     // helper function to display each row
     var displayRow = function(store) {
-      var row = "<tr><th>" + store.name + "</th>",
-        hoursInDay = 11,
-        totalDonuts = 0,
-        table = document.querySelector("table");
-      for (var i = 0; i < hoursInDay; i++) {
-        var donuts = store.donutsPerHour();
-        row += "<td>" + donuts + "</td>";
+      var row = document.createElement("tr"),
+        nameCell = document.createElement("th"),
+        totalCell = document.createElement("td"),
+        totalDonuts = 0;
+      nameCell.textContent = store.name;
+      row.appendChild(nameCell);
+      for (var i = 0; i < hours.length; i++) {
+        var cell = document.createElement("td"),
+            donuts = store.donutsPerHour();
+        cell.textContent = donuts;
+        row.appendChild(cell);
         totalDonuts += donuts;
       };
-      row += "<td>" + totalDonuts + "</td></tr>";
-      table.innerHTML += row;
+      totalCell.textContent = totalDonuts;
+      row.appendChild(totalCell);
+      table.appendChild(row);
     };
     for (var i = 0; i < stores.length; i++) {
       displayRow(stores[i]);
@@ -64,5 +72,5 @@
   }
 
   createTableHeaders(hours);
-  displayRows(stores);
+  displayRows(stores, hours);
 }();
