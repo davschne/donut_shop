@@ -15,11 +15,12 @@
   };
 
   // This function isn't necessary and isn't used
-  Store.prototype.donutsPerDay = function() {
+  Store.prototype.donutsPerDay = function(hours) {
     var total = 0;
-    for (var i = 0; i < 11; i++) {
+    for (var i = 0; i < hours.length; i++) {
       total += this.donutsPerHour();
     }
+    return total;
   };
 
   var downtown = new Store("Downtown", 8, 43, 4.5),
@@ -30,12 +31,13 @@
 
   var stores = [downtown, capHill, slu, wedgewood, ballard];
 
-  function createTableHeaders() {
-    var hours = ["7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"],
-        table = document.querySelector("table"),
+  var hours = ["7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"];
+
+  function createTableHeaders(headings) {
+    var table = document.querySelector("table"),
         row = "<tr><th></th>";
-    for (var i = 0; i < hours.length; i++) {
-      row += "<th>" + hours[i] + "</th>";
+    for (var i = 0; i < headings.length; i++) {
+      row += "<th>" + headings[i] + "</th>";
     }
     row += "<th>Total</th></tr>";
     table.innerHTML += row;
@@ -61,6 +63,6 @@
     }
   }
 
-  createTableHeaders();
+  createTableHeaders(hours);
   displayRows(stores);
 }();
