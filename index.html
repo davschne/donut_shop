@@ -10,5 +10,36 @@
     <thead></thead>
     <tbody></tbody>
   </table>
+  <form>
+    <h2>Add a new store location</h2>
+    <p>
+      <label for="name">
+        <p>Location name</p>
+        <input id="name" required>
+      </label>
+    </p>
+    <p>
+      <label for="min-cust">
+        <p>Minimum number of customers per hour</p>
+        <input id="min-cust" type="number" required>
+      </label>
+    </p>
+    <p>
+      <label for="max-cust">
+        <p>Maximum number of customers per hour</p>
+        <input id="max-cust" type="number" required>
+      </label>
+    </p>
+    <p>
+      <label for="avg-per-cust">
+        <p>Average number of donuts purchased per customer</p>
+        <input id="avg-per-cust" type="number" required>
+      </label>
+    </p>
+    <br>
+    <label for="submit">
+      <input id="submit" type="submit" required>
+    </label>
+  </form>
   <script src="donut_shop.js"></script>
 </body>

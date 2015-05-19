@@ -1,4 +1,4 @@
-!function() {
+!function(document) {
   function Store(name, minCustPerHour, maxCustPerHour, avgPerCust) {
     this.name = name;
     this.minCustPerHour = minCustPerHour;
@@ -73,4 +73,5 @@
 
   createTableHeaders(hours);
   displayRows(stores, hours);
-}();
+
+}(document);
