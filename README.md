@@ -6,4 +6,4 @@ This webpage displays, in table form, the estimated number of donuts that will n
 
 For each hour of the day, the algorithm selects, uniformly at random, the number of customers per hour within the specified range. This is multiplied by the average number purchased per customer.
 
-There is also a submission form for adding new store locations.
+There is also a submission form for adding new stores or modifying existing stores. If the user enters an existing store name in the "Location name" field, that store's data can be modified (the name is not case-sensitive). If the location doesn't exist, it will be created and added to the table.

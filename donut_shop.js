@@ -20,28 +20,56 @@
         nameCell = document.createElement("th"),
         totalCell = document.createElement("td"),
         totalDonuts = 0;
-      nameCell.textContent = this.name;
-      row.appendChild(nameCell);
-      for (var i = 0; i < hours.length; i++) {
-        var cell = document.createElement("td"),
-            donuts = this.donutsPerHour();
-        cell.textContent = donuts;
-        row.appendChild(cell);
-        totalDonuts += donuts;
-      };
-      totalCell.textContent = totalDonuts;
-      row.appendChild(totalCell);
+    nameCell.textContent = this.name;
+    row.appendChild(nameCell);
+    for (var i = 0; i < hours.length; i++) {
+      var cell = document.createElement("td"),
+          donuts = this.donutsPerHour();
+      cell.textContent = donuts;
+      row.appendChild(cell);
+      totalDonuts += donuts;
+    };
+    totalCell.textContent = totalDonuts;
+    row.appendChild(totalCell);
+    row.setAttribute("id", this.name); // Set id, so we can find it later
+    var elRow = document.getElementById(this.name);
+    if (elRow) {
+      // If row is already in table, replace it
+      table.replaceChild(row, elRow);
+    } else {
+      // Otherwise append to the table
       table.appendChild(row);
+    }
   };
 
-  function addNewStore(event) {
+  function getStoreIndexByName(name, stores) {
+    for (var i = 0; i < stores.length; i++) {
+      if (name.toLowerCase() == stores[i].name.toLowerCase()) return i;
+    }
+    return null;
+  };
+
+  function addOrModifyStore(event) {
     event.preventDefault();
-    var name = event.target["name"].value,
-        minCustPerHour = Number(event.target["min-cust"].value),
-        maxCustPerHour = Number(event.target["max-cust"].value),
-        avgPerCust = Number(event.target["avg-per-cust"].value),
-        store = new Store(name, minCustPerHour, maxCustPerHour, avgPerCust);
-    stores.push(store);
+    var target = event.target,
+        name = target["name"].value,
+        minCustPerHour = Number(target["min-cust"].value),
+        maxCustPerHour = Number(target["max-cust"].value),
+        avgPerCust = Number(target["avg-per-cust"].value),
+        index = getStoreIndexByName(name, stores),
+        store;
+    if (index == null) {
+      // create a new store
+      store = new Store(name, minCustPerHour, maxCustPerHour, avgPerCust);
+      stores.push(store);
+    } else {
+      // modify an existing store
+      store = stores[index];
+      store.minCustPerHour = minCustPerHour;
+      store.maxCustPerHour = maxCustPerHour;
+      store.avgPerCust = avgPerCust;
+    }
+    // modify table
     store.writeToTable(hours);
   };
 
@@ -76,6 +104,6 @@
   displayRows(stores, hours);
 
   var form = document.querySelector("form");
-  form.addEventListener("submit", addNewStore, false);
+  form.addEventListener("submit", addOrModifyStore, false);
 
 }(document);
