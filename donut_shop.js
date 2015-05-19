@@ -1,4 +1,4 @@
-!function() {
+!function(document) {
   function Store(name, minCustPerHour, maxCustPerHour, avgPerCust) {
     this.name = name;
     this.minCustPerHour = minCustPerHour;
@@ -14,55 +14,96 @@
     return Math.round(this.avgPerCust * customers);
   };
 
-  // This function isn't necessary and isn't used
-  Store.prototype.donutsPerDay = function(hours) {
-    var total = 0;
+  Store.prototype.writeToTable = function(hours) {
+    var table = document.querySelector("tbody"),
+        row = document.createElement("tr"),
+        nameCell = document.createElement("th"),
+        totalCell = document.createElement("td"),
+        totalDonuts = 0;
+    nameCell.textContent = this.name;
+    row.appendChild(nameCell);
     for (var i = 0; i < hours.length; i++) {
-      total += this.donutsPerHour();
+      var cell = document.createElement("td"),
+          donuts = this.donutsPerHour();
+      cell.textContent = donuts;
+      row.appendChild(cell);
+      totalDonuts += donuts;
+    };
+    totalCell.textContent = totalDonuts;
+    row.appendChild(totalCell);
+    row.setAttribute("id", this.name); // Set id, so we can find it later
+    var elRow = document.getElementById(this.name);
+    if (elRow) {
+      // If row is already in table, replace it
+      table.replaceChild(row, elRow);
+    } else {
+      // Otherwise append to the table
+      table.appendChild(row);
     }
-    return total;
   };
 
-  var downtown = new Store("Downtown", 8, 43, 4.5),
-      capHill = new Store("Capitol Hill", 4, 37, 2),
-      slu = new Store("South Lake Union", 9, 23, 6.33),
-      wedgewood = new Store("Wedgewood", 2, 28, 1.25),
-      ballard = new Store("Ballard", 8, 58, 3.75);
+  function getStoreIndexByName(name, stores) {
+    for (var i = 0; i < stores.length; i++) {
+      if (name.toLowerCase() == stores[i].name.toLowerCase()) return i;
+    }
+    return null;
+  };
 
-  var stores = [downtown, capHill, slu, wedgewood, ballard];
+  function addOrModifyStore(event) {
+    event.preventDefault();
+    var target = event.target,
+        name = target["name"].value,
+        minCustPerHour = Number(target["min-cust"].value),
+        maxCustPerHour = Number(target["max-cust"].value),
+        avgPerCust = Number(target["avg-per-cust"].value),
+        index = getStoreIndexByName(name, stores),
+        store;
+    if (index == null) {
+      // create a new store
+      store = new Store(name, minCustPerHour, maxCustPerHour, avgPerCust);
+      stores.push(store);
+    } else {
+      // modify an existing store
+      store = stores[index];
+      store.minCustPerHour = minCustPerHour;
+      store.maxCustPerHour = maxCustPerHour;
+      store.avgPerCust = avgPerCust;
+    }
+    // modify table
+    store.writeToTable(hours);
+  };
+
+  function createTableHeaders(hours) {
+    var table = document.querySelector("thead"),
+        row = document.createElement("tr"),
+        headings = [""].concat(hours, "Total"); // column headings
+    for (var i = 0; i < headings.length; i++) {
+      var cell = document.createElement("th");
+      cell.textContent = headings[i];
+      row.appendChild(cell);
+    }
+    table.appendChild(row);
+  };
+
+  function displayRows(stores, hours) {
+    for (var i = 0; i < stores.length; i++) {
+      stores[i].writeToTable(hours);
+    }
+  };
+
+  var stores = [];
+  stores.push(new Store("Downtown", 8, 43, 4.5));
+  stores.push(new Store("Capitol Hill", 4, 37, 2));
+  stores.push(new Store("South Lake Union", 9, 23, 6.33));
+  stores.push(new Store("Wedgewood", 2, 28, 1.25));
+  stores.push(new Store("Ballard", 8, 58, 3.75));
 
   var hours = ["7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"];
 
-  function createTableHeaders(headings) {
-    var table = document.querySelector("table"),
-        row = "<tr><th></th>";
-    for (var i = 0; i < headings.length; i++) {
-      row += "<th>" + headings[i] + "</th>";
-    }
-    row += "<th>Total</th></tr>";
-    table.innerHTML += row;
-  }
-
-  function displayRows(stores) {
-    // helper function to display each row
-    var displayRow = function(store) {
-      var row = "<tr><th>" + store.name + "</th>",
-        hoursInDay = 11,
-        totalDonuts = 0,
-        table = document.querySelector("table");
-      for (var i = 0; i < hoursInDay; i++) {
-        var donuts = store.donutsPerHour();
-        row += "<td>" + donuts + "</td>";
-        totalDonuts += donuts;
-      };
-      row += "<td>" + totalDonuts + "</td></tr>";
-      table.innerHTML += row;
-    };
-    for (var i = 0; i < stores.length; i++) {
-      displayRow(stores[i]);
-    }
-  }
-
   createTableHeaders(hours);
-  displayRows(stores);
-}();
+  displayRows(stores, hours);
+
+  var form = document.querySelector("form");
+  form.addEventListener("submit", addOrModifyStore, false);
+
+}(document);

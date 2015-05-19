@@ -7,6 +7,40 @@
   <h1>Top Pot Baking Estimates by Location</h1>
   <p>Donuts to bake per hour per location based on estimated demand</p>
   <table>
+    <thead></thead>
+    <tbody></tbody>
   </table>
+  <form>
+    <h2>Add/modify a store</h2>
+    <p>Modify a store by entering its name in the "Location name" field below. If the store doesn't exist, it will be created.</p>
+    <p>
+      <label for="name">
+        <p>Location name:</p>
+        <input id="name" required>
+      </label>
+    </p>
+    <p>
+      <label for="min-cust">
+        <p>Minimum number of customers per hour:</p>
+        <input id="min-cust" type="number" required>
+      </label>
+    </p>
+    <p>
+      <label for="max-cust">
+        <p>Maximum number of customers per hour:</p>
+        <input id="max-cust" type="number" required>
+      </label>
+    </p>
+    <p>
+      <label for="avg-per-cust">
+        <p>Average number of donuts purchased per customer:</p>
+        <input id="avg-per-cust" type="number" required>
+      </label>
+    </p>
+    <br>
+    <label for="submit">
+      <button id="submit" type="submit">Submit</button>
+    </label>
+  </form>
   <script src="donut_shop.js"></script>
 </body>
