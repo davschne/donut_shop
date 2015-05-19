@@ -23,15 +23,24 @@
     return total;
   };
 
-  var downtown = new Store("Downtown", 8, 43, 4.5),
-      capHill = new Store("Capitol Hill", 4, 37, 2),
-      slu = new Store("South Lake Union", 9, 23, 6.33),
-      wedgewood = new Store("Wedgewood", 2, 28, 1.25),
-      ballard = new Store("Ballard", 8, 58, 3.75);
-
-  var stores = [downtown, capHill, slu, wedgewood, ballard];
+  var stores = [];
+  stores.push(new Store("Downtown", 8, 43, 4.5));
+  stores.push(new Store("Capitol Hill", 4, 37, 2));
+  stores.push(new Store("South Lake Union", 9, 23, 6.33));
+  stores.push(new Store("Wedgewood", 2, 28, 1.25));
+  stores.push(new Store("Ballard", 8, 58, 3.75));
 
   var hours = ["7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"];
+
+  function addNewStore(event) {
+    event.preventDefault();
+    var name = event.target["name"].value,
+        minCustPerHour = Number(event.target["min-cust"].value),
+        maxCustPerHour = Number(event.target["max-cust"].value),
+        avgPerCust = Number(event.target["avg-per-cust"].value);
+    stores.push(new Store(name, minCustPerHour, maxCustPerHour, avgPerCust));
+    displayRows(stores, hours);
+  }
 
   function createTableHeaders(hours) {
     var table = document.querySelector("thead"),
@@ -73,5 +82,8 @@
 
   createTableHeaders(hours);
   displayRows(stores, hours);
+
+  var form = document.querySelector("form");
+  form.addEventListener("submit", addNewStore, false);
 
 }(document);
