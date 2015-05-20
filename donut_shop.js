@@ -20,8 +20,12 @@
         nameCell = document.createElement("th"),
         totalCell = document.createElement("td"),
         totalDonuts = 0;
+
+    // Add first cell (store name)
     nameCell.textContent = this.name;
     row.appendChild(nameCell);
+
+    // Add cells (donuts per hour)
     for (var i = 0; i < hours.length; i++) {
       var cell = document.createElement("td"),
           donuts = this.donutsPerHour();
@@ -29,9 +33,15 @@
       row.appendChild(cell);
       totalDonuts += donuts;
     };
+
+    // Add last cell (total donuts per day)
     totalCell.textContent = totalDonuts;
     row.appendChild(totalCell);
-    row.setAttribute("id", this.name); // Set id, so we can find it later
+
+    // Set id, so we can find it later
+    row.setAttribute("id", this.name);
+
+    // Get the store's row, if it exists
     var elRow = document.getElementById(this.name);
     if (elRow) {
       // If row is already in table, replace it
@@ -51,6 +61,7 @@
 
   function addOrModifyStore(event) {
     event.preventDefault();
+
     var target = event.target,
         name = target["name"].value,
         minCustPerHour = Number(target["min-cust"].value),
@@ -58,6 +69,7 @@
         avgPerCust = Number(target["avg-per-cust"].value),
         index = getStoreIndexByName(name, stores),
         store;
+
     if (index == null) {
       // create a new store
       store = new Store(name, minCustPerHour, maxCustPerHour, avgPerCust);
@@ -69,6 +81,7 @@
       store.maxCustPerHour = maxCustPerHour;
       store.avgPerCust = avgPerCust;
     }
+
     // modify table
     store.writeToTable(hours);
   };
@@ -77,11 +90,13 @@
     var table = document.querySelector("thead"),
         row = document.createElement("tr"),
         headings = [""].concat(hours, "Total"); // column headings
+
     for (var i = 0; i < headings.length; i++) {
       var cell = document.createElement("th");
       cell.textContent = headings[i];
       row.appendChild(cell);
     }
+
     table.appendChild(row);
   };
 
