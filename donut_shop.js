@@ -23,6 +23,7 @@
 
     // Add first cell (store name)
     nameCell.textContent = this.name;
+    nameCell.setAttribute("class", "storeName");
     row.appendChild(nameCell);
 
     // Add cells (donuts per hour)
@@ -96,7 +97,7 @@
       cell.textContent = headings[i];
       row.appendChild(cell);
     }
-
+    row.setAttribute("class", "header");
     table.appendChild(row);
   };
 

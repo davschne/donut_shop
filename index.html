@@ -2,6 +2,8 @@
 <head>
   <meta charset="utf-8">
   <title>Top Pot Baking Estimates by Location</title>
+  <link href='http://fonts.googleapis.com/css?family=Lora|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+  <link href="styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <h1>Top Pot Baking Estimates by Location</h1>
@@ -13,30 +15,14 @@
   <form>
     <h2>Add/modify a store</h2>
     <p>Modify a store by entering its name in the "Location name" field below. If the store doesn't exist, it will be created.</p>
-    <p>
-      <label for="name">
-        <p>Location name:</p>
-        <input id="name" required>
-      </label>
-    </p>
-    <p>
-      <label for="min-cust">
-        <p>Minimum number of customers per hour:</p>
-        <input id="min-cust" type="number" required>
-      </label>
-    </p>
-    <p>
-      <label for="max-cust">
-        <p>Maximum number of customers per hour:</p>
-        <input id="max-cust" type="number" required>
-      </label>
-    </p>
-    <p>
-      <label for="avg-per-cust">
-        <p>Average number of donuts purchased per customer:</p>
-        <input id="avg-per-cust" type="number" required>
-      </label>
-    </p>
+    <p class="form-field"><label for="name">Location name:</label>
+    <input id="name" required></p>
+    <p class="form-field"><label for="min-cust">Min customers/hour:</label>
+    <input id="min-cust" type="number" required></p>
+    <p class="form-field"><label for="max-cust">Max customers/hour:</label>
+    <input id="max-cust" type="number" required></p>
+    <p class="form-field"><label for="avg-per-cust">Average/customer:</label>
+    <input id="avg-per-cust" type="number" required></p>
     <br>
     <label for="submit">
       <button id="submit" type="submit">Submit</button>
