@@ -67,18 +67,27 @@ p {
 
 label {
   font-size: 14px;
+  display: block;
+  width: 170px;
+  float: left;
+}
+
+label[for="submit"] {
+  float: none;
 }
 
 .form-field {
   padding-bottom: 0px;
   margin-bottom: 0px;
-  width: 400px;
+  width: 326px;
 }
 
 input {
   background-color: #C77966;
   font-family: "Lora", serif;
   font-size: 14px;
+  float: left;
+  width: 150px;
 }
 
 button {
