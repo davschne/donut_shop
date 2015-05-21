@@ -3,18 +3,21 @@
   <meta charset="utf-8">
   <title>Top Pot Baking Estimates by Location</title>
   <link href='http://fonts.googleapis.com/css?family=Lora|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
-  <link href="styles.css" rel="stylesheet" type="text/css">
+  <link href="styles/reset.css" rel="stylesheet" type="text/css">
+  <link href="styles/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <h1>Top Pot Baking Estimates by Location</h1>
+  <div id="background-box"></div>
+  <img src="images/Top_Pot_Doughnuts_01.png" alt="Top Pot logo" id="logo">
   <p>Donuts to bake per hour per location based on estimated demand</p>
   <table>
     <thead></thead>
     <tbody></tbody>
   </table>
-  <form>
     <h2>Add/modify a store</h2>
     <p>Modify a store by entering its name in the "Location name" field below. If the store doesn't exist, it will be created.</p>
+  <form>
     <p class="form-field">
       <label for="name">Location name:</label>
       <input id="name" required>
