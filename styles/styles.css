@@ -30,7 +30,7 @@ body {
   z-index: -2;
 }
 
-@keyframes spin {
+@keyframes hypnotize {
   0% {
     transform: rotate(0deg)scale(1);
   }
@@ -42,14 +42,22 @@ body {
   }
 }
 
+.images-table {
+  margin: 10% auto 0 auto;
+  width: 85%;
+}
+
+.images-table td {
+  width: 33.33%;
+  text-align: center;
+}
+
 div img:first-child {
-  margin: 10% 10% 0% 10%;
-  animation: spin 5s linear 0s infinite;
+  animation: hypnotize 5s linear 0s infinite;
 }
 
 div img:nth-child(2) {
-  margin: 10% 0% 0% 15%;
-  animation: spin 7s linear 0s infinite reverse;
+  animation: hypnotize 7s linear 0s infinite reverse;
 }
 
 #logo {
@@ -92,7 +100,7 @@ p {
   text-align: center;
 }
 
-table {
+.data-table {
   border: 2px solid #2F343B;
   border-collapse: collapse;
   margin: 0 5rem 0 5rem;
@@ -102,18 +110,18 @@ table {
   width: 150px;
 }
 
-td, th {
+.data-table td, th {
   padding: 5px;
   width: 5em;
   border-right: 1px solid #FFFFFF;
   border-bottom: 1px solid #000000;
 }
 
-th {
+.data-table th {
   background-color: #3B7B8A;
 }
 
-td {
+.data-table td {
   text-align: right;
   background-color: #95BAC2;
   color: #000000;
@@ -145,6 +153,8 @@ label {
   width: 250px;
   float: left;
 }
+
+@keyframes
 
 input {
   background-color: #95BAC2;

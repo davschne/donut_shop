@@ -15,7 +15,7 @@
   };
 
   Store.prototype.writeToTable = function(hours) {
-    var table = document.querySelector("tbody"),
+    var table = document.querySelector(".data-table tbody"),
         row = document.createElement("tr"),
         nameCell = document.createElement("th"),
         totalCell = document.createElement("td"),
@@ -88,7 +88,7 @@
   };
 
   function createTableHeaders(hours) {
-    var table = document.querySelector("thead"),
+    var table = document.querySelector(".data-table thead"),
         row = document.createElement("tr"),
         headings = [""].concat(hours, "Total"); // column headings
 
