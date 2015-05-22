@@ -118,13 +118,27 @@ p {
 }
 
 .data-table th {
+  color: #FFFFFF;
   background-color: #3B7B8A;
+  text-align: center;
 }
 
-.data-table td {
+.data-table tbody tr {
   text-align: right;
-  background-color: #95BAC2;
   color: #000000;
+  background-color: #95BAC2;
+}
+
+.data-table tbody td:last-child {
+  font-weight: bold;
+}
+
+.data-table tbody tr:hover {
+  background-color: #7398A0;
+}
+
+.data-table tbody tr:hover th {
+  background-color: #7398A0;
 }
 
 form {
