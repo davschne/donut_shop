@@ -154,14 +154,17 @@ label {
   float: left;
 }
 
-@keyframes
-
 input {
   background-color: #95BAC2;
   font-family: "Lora", serif;
   font-size: 14px;
   float: left;
   width: 150px;
+  transition: transform .2s linear;
+}
+
+input:focus {
+  transform: scale(1.08);
 }
 
 button {
