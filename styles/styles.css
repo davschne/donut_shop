@@ -19,11 +19,18 @@ body {
   margin: 40px;
 }
 
+#background-box {
+  background-color: #000000;
+  position: absolute;
+  margin: 0 auto;
+  top: 2rem;
+  left: 12rem;
+  right: 12rem;
+  height: 100%;
+  z-index: -2;
+}
+
 #logo {
-  /*
-  position: fixed;
-  z-index: -1;
-  */
   display: block;
   margin: 50px auto 0 auto;
   top: 5rem;
@@ -57,20 +64,20 @@ h2 {
   color: #3B7B8A;
 }
 
-.header {
-  /*border-bottom-style: solid;*/
-  /*border-bottom-width: 1px;*/
-  /*border-bottom-color: #2F343B;*/
-}
-
-.storeName {
-  width: 150px;
+p {
+  font-size: 18px;
+  padding-bottom: 10px;
+  text-align: center;
 }
 
 table {
   border: 2px solid #2F343B;
   border-collapse: collapse;
   margin: 0 5rem 0 5rem;
+}
+
+.storeName {
+  width: 150px;
 }
 
 td, th {
@@ -89,13 +96,6 @@ td {
   background-color: #95BAC2;
   color: #000000;
 }
-
-p {
-  font-size: 18px;
-  padding-bottom: 10px;
-  text-align: center;
-}
-
 
 form {
   display: block;
@@ -143,13 +143,3 @@ button {
   left: 191px;
 }
 
-#background-box {
-  background-color: #000000;
-  position: absolute;
-  margin: 0 auto;
-  top: 2rem;
-  left: 12rem;
-  right: 12rem;
-  height: 100%;
-  z-index: -2;
-}
