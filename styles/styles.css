@@ -19,13 +19,50 @@ body {
   margin: 40px;
 }
 
+#background-box {
+  background-color: #000000;
+  position: absolute;
+  margin: 0 auto;
+  top: 2rem;
+  left: 12rem;
+  right: 12rem;
+  height: 120%;
+  z-index: -2;
+}
+
+@keyframes hypnotize {
+  0% {
+    transform: rotate(0deg)scale(1);
+  }
+  50% {
+    transform: rotate(180deg)scale(0.7);
+  }
+  100% {
+    transform: rotate(360deg)scale(1);
+  }
+}
+
+.images-table {
+  margin: 10% auto 0 auto;
+  width: 85%;
+}
+
+.images-table td {
+  width: 33.33%;
+  text-align: center;
+}
+
+div img:first-child {
+  animation: hypnotize 5s linear 0s infinite;
+}
+
+div img:nth-child(2) {
+  animation: hypnotize 7s linear 0s infinite reverse;
+}
+
 #logo {
-  /*
-  position: fixed;
-  z-index: -1;
-  */
   display: block;
-  margin: 50px auto 0 auto;
+  margin: 150px auto 0 auto;
   top: 5rem;
   bottom: 5rem;
   left: 50%;
@@ -57,45 +94,52 @@ h2 {
   color: #3B7B8A;
 }
 
-.header {
-  /*border-bottom-style: solid;*/
-  /*border-bottom-width: 1px;*/
-  /*border-bottom-color: #2F343B;*/
-}
-
-.storeName {
-  width: 150px;
-}
-
-table {
-  border: 2px solid #2F343B;
-  border-collapse: collapse;
-  margin: 0 5rem 0 5rem;
-}
-
-td, th {
-  padding: 5px;
-  width: 5em;
-  border-right: 1px solid #FFFFFF;
-  border-bottom: 1px solid #000000;
-}
-
-th {
-  background-color: #3B7B8A;
-}
-
-td {
-  text-align: right;
-  background-color: #95BAC2;
-  color: #000000;
-}
-
 p {
   font-size: 18px;
   padding-bottom: 10px;
   text-align: center;
 }
 
+.data-table {
+  border: 2px solid #2F343B;
+  border-collapse: collapse;
+  margin: 0 5rem 0 5rem;
+}
+
+.storeName {
+  width: 150px;
+}
+
+.data-table td, th {
+  padding: 5px;
+  width: 5em;
+  border-right: 1px solid #FFFFFF;
+  border-bottom: 1px solid #000000;
+}
+
+.data-table th {
+  color: #FFFFFF;
+  background-color: #3B7B8A;
+  text-align: center;
+}
+
+.data-table tbody tr {
+  text-align: right;
+  color: #000000;
+  background-color: #95BAC2;
+}
+
+.data-table tbody td:last-child {
+  font-weight: bold;
+}
+
+.data-table tbody tr:hover {
+  background-color: #7398A0;
+}
+
+.data-table tbody tr:hover th {
+  background-color: #7398A0;
+}
 
 form {
   display: block;
@@ -130,6 +174,11 @@ input {
   font-size: 14px;
   float: left;
   width: 150px;
+  transition: transform .2s linear;
+}
+
+input:focus {
+  transform: scale(1.08);
 }
 
 button {
@@ -143,13 +192,3 @@ button {
   left: 191px;
 }
 
-#background-box {
-  background-color: #000000;
-  position: absolute;
-  margin: 0 auto;
-  top: 2rem;
-  left: 12rem;
-  right: 12rem;
-  height: 100%;
-  z-index: -2;
-}

@@ -15,7 +15,7 @@
   };
 
   Store.prototype.writeToTable = function(hours) {
-    var table = document.querySelector("tbody"),
+    var table = document.querySelector(".data-table tbody"),
         row = document.createElement("tr"),
         nameCell = document.createElement("th"),
         totalCell = document.createElement("td"),
@@ -87,8 +87,21 @@
     store.writeToTable(hours);
   };
 
+  function populateForm(event) {
+    var row = event.target.parentNode,
+        store = stores[getStoreIndexByName(row.getAttribute("id"), stores)],
+        nameBox = document.getElementById("name"),
+        minCustBox = document.getElementById("min-cust"),
+        maxCustBox = document.getElementById("max-cust"),
+        avgDonutsBox = document.getElementById("avg-per-cust");
+    nameBox.value = store.name;
+    minCustBox.value = store.minCustPerHour;
+    maxCustBox.value = store.maxCustPerHour;
+    avgDonutsBox.value = store.avgPerCust;
+  }
+
   function createTableHeaders(hours) {
-    var table = document.querySelector("thead"),
+    var table = document.querySelector(".data-table thead"),
         row = document.createElement("tr"),
         headings = [""].concat(hours, "Total"); // column headings
 
@@ -121,5 +134,7 @@
 
   var form = document.querySelector("form");
   form.addEventListener("submit", addOrModifyStore, false);
+  var table = document.querySelector(".data-table tbody");
+  table.addEventListener("click", populateForm, false);
 
 }(document);
